@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Dashboard() {
-  const [medications, setMedications] = useState([]);
+  // Initialize medications from localStorage if available
+  const [medications, setMedications] = useState(() => {
+    const savedMedications = localStorage.getItem('medications');
+    return savedMedications ? JSON.parse(savedMedications) : [];
+  });
   const [name, setName] = useState('');
   const [dosage, setDosage] = useState('');
   const [time, setTime] = useState('');
+
+  // Save medications to localStorage whenever the medications state changes
+  useEffect(() => {
+    localStorage.setItem('medications', JSON.stringify(medications));
+  }, [medications]);
 
   const handleAddMedication = () => {
     const newMedication = { name, dosage, time };
@@ -12,6 +21,11 @@ function Dashboard() {
     setName('');
     setDosage('');
     setTime('');
+  };
+
+  const handleDeleteMedication = (index) => {
+    const updatedMedications = medications.filter((_, i) => i !== index);
+    setMedications(updatedMedications);
   };
 
   return (
@@ -60,8 +74,15 @@ function Dashboard() {
           {medications.length > 0 ? (
             <ul>
               {medications.map((medication, index) => (
-                <li key={index} className="mb-2">
-                  <strong>{medication.name}</strong> - {medication.dosage} at {medication.time}
+                <li key={index} className="mb-2 flex justify-between items-center">
+                  <div>
+                    <strong>{medication.name}</strong> - {medication.dosage} at {medication.time}
+                  </div>
+                  <button 
+                    onClick={() => handleDeleteMedication(index)} 
+                    className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">
+                    Delete
+                  </button>
                 </li>
               ))}
             </ul>
