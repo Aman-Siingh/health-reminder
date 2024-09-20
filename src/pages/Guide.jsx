@@ -10,6 +10,7 @@ function Guide() {
         Please refer to this guide during emergencies to help manage the situation until professional 
         medical help is available.
       </p>
+      
       <section className="mt-6">
         <h2 className="text-2xl font-semibold text-indigo-500">Common First Aid Tips</h2>
         <ul className="list-disc list-inside mt-2 text-gray-700">
@@ -19,6 +20,16 @@ function Guide() {
           <li><strong>Choking:</strong> Perform the Heimlich maneuver if the person is choking.</li>
           <li><strong>Fractures:</strong> Immobilize the affected area and seek medical help.</li>
         </ul>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-2xl font-semibold text-indigo-500 mb-4">First Aid Visuals</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <img src="../assests/1.jpeg"alt="CPR" className="w-full h-auto rounded-lg shadow-md" />
+          <img src="../assests/2.jpeg" alt="Stopping Bleeding" className="w-full h-auto rounded-lg shadow-md" />
+          <img src="../assests/3.jpeg" alt="Treating Burns" className="w-full h-auto rounded-lg shadow-md" />
+          <img src="../assests/4.jpeg" alt="Heimlich Maneuver" className="w-full h-auto rounded-lg shadow-md" />
+        </div>
       </section>
     </div>
   );
