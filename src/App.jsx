@@ -1,9 +1,9 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-import BookAppointment from './pages/BookAppointment';  // Correctly importing BookAppointment
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
             <Link to="/" className="text-white text-2xl font-bold">
               MediSOS
             </Link>
-            <div className="space-x-4">
+            <div className="space-x-4 flex items-center">
               <Link to="/" className="text-white hover:text-indigo-300 transition duration-300">
                 Home
               </Link>
@@ -23,9 +23,6 @@ function App() {
               </Link>
               <Link to="/register" className="text-white hover:text-indigo-300 transition duration-300">
                 Register
-              </Link>
-              <Link to="/book-appointment" className="text-white hover:text-indigo-300 transition duration-300">
-                Book Appointment
               </Link>
             </div>
           </nav>
@@ -37,7 +34,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/book-appointment" element={<BookAppointment />} />  {/* BookAppointment route */}
           </Routes>
         </main>
 
@@ -52,3 +48,5 @@ function App() {
 }
 
 export default App;
+
+
