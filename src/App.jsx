@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Guide from './pages/Guide';
+import BookAppointment from './pages/BookAppointment'; // Import BookAppointment component
 
 function App() {
   return (
@@ -24,6 +26,13 @@ function App() {
               <Link to="/register" className="text-white hover:text-indigo-300 transition duration-300">
                 Register
               </Link>
+              <Link to="/book-appointment" className="text-white hover:text-indigo-300 transition duration-300">
+                Book Doctor Appointment
+              </Link>
+              <Link to="/guide" className="text-white hover:text-indigo-300 transition duration-300">
+                Guide
+              </Link>
+              
             </div>
           </nav>
         </header>
@@ -34,6 +43,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/guide" element={<Guide />} />
+            <Route path="/book-appointment" element={<BookAppointment />} /> {/* Updated path */}
           </Routes>
         </main>
 
@@ -48,5 +59,3 @@ function App() {
 }
 
 export default App;
-
-
