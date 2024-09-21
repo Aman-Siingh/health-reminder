@@ -4,9 +4,18 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js"
+
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        Anton: ['Anton', 'sans-serif']
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+
+  ],
 }
