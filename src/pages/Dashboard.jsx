@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 
@@ -9,23 +8,20 @@ function Dashboard() {
   });
   const [name, setName] = useState('');
   const [dosage, setDosage] = useState('');
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState(''); // For manual time input
+  const [contactInfo, setContactInfo] = useState('');
 
   useEffect(() => {
     localStorage.setItem('medications', JSON.stringify(medications));
   }, [medications]);
 
   const handleAddMedication = () => {
-    const newMedication = { name, dosage, time };
+    const newMedication = { name, dosage, time, contactInfo };
     setMedications([...medications, newMedication]);
     setName('');
     setDosage('');
     setTime('');
-  };
-
-  const handleDeleteMedication = (index) => {
-    const updatedMedications = medications.filter((_, i) => i !== index);
-    setMedications(updatedMedications);
+    setContactInfo('');
   };
 
   return (
@@ -55,7 +51,17 @@ function Dashboard() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Time</label>
+              <label className="block text-gray-700 mb-2">Email or Phone Number</label>
+              <input 
+                type="text" 
+                value={contactInfo} 
+                onChange={(e) => setContactInfo(e.target.value)} 
+                placeholder="Enter email or phone number" 
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Select Time</label>
               <input 
                 type="time" 
                 value={time} 
@@ -78,7 +84,7 @@ function Dashboard() {
                 {medications.map((medication, index) => (
                   <li key={index} className="mb-2 flex justify-between items-center">
                     <div>
-                      <strong>{medication.name}</strong> - {medication.dosage} at {medication.time}
+                      <strong>{medication.name}</strong> - {medication.dosage} at {medication.time}, Contact: {medication.contactInfo}
                     </div>
                     <button 
                       onClick={() => handleDeleteMedication(index)} 
