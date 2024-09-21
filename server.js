@@ -27,24 +27,30 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
+// Run cron job every minute
 cron.schedule("* * * * *", async () => {
-  const now = new Date();
-  const oneMinuteLater = new Date(now.getTime() + 60 * 1000); // 1 minute from now
+  const now = new Date(); // Current time
+  const oneMinuteAgo = new Date(now.getTime() - 60 * 1000); // 1 minute before now
+  const oneMinuteLater = new Date(now.getTime() + 60 * 1000); // 1 minute after now
 
-  // Find reminders that should be sent between now and 1 minute later
-  const medicines = await Medicine.find({
-    reminderTime: { $lte: oneMinuteLater, $gte: now }, // Reminder time is now or in the next minute
-    notificationSent: false,
-  });
+  try {
+    // Find reminders that are due within 1 minute of now
+    const medicines = await Medicine.find({
+      reminderTime: { $gte: oneMinuteAgo, $lte: oneMinuteLater }, // Check if reminder time is within the 1-minute window
+      notificationSent: false, // Ensure the reminder email has not already been sent
+    });
 
-  medicines.forEach(async (medicine) => {
-    // Send reminder email
-    await sendReminderEmail(medicine.userEmail, medicine.medicineName);
+    // Send email reminders
+    medicines.forEach(async (medicine) => {
+      await sendReminderEmail(medicine.userEmail, medicine.medicineName); // Send the reminder email
 
-    // Mark the notification as sent
-    medicine.notificationSent = true;
-    await medicine.save();
-  });
+      // Mark the notification as sent to avoid resending
+      medicine.notificationSent = true;
+      await medicine.save();
+    });
+  } catch (err) {
+    console.error("Error checking reminders:", err);
+  }
 });
 
 const PORT = process.env.PORT || 8080;
