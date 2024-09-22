@@ -46,7 +46,7 @@ cron.schedule("* * * * *", async () => {
         medicine.userEmail,
         medicine.medicineName,
         medicine.dosage
-      ); // Send the reminder email
+      );  // Send the reminder email
 
       // Mark the notification as sent to avoid resending
       medicine.notificationSent = true;

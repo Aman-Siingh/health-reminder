@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Dashboard() {
   const [medications, setMedications] = useState(() => {
@@ -31,18 +33,13 @@ function Dashboard() {
         { medicineName, dosage, reminderTime: reminderDateTime, userEmail }
       );
       if (res && res.data.success) {
-        navigate("/"); // Redirect on success
+        navigate("/dashboard"); // Redirect on success
       } else {
         console.log("error");
       }
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleDeleteMedication = (index) => {
-    const updatedMedications = medications.filter((_, i) => i !== index);
-    setMedications(updatedMedications);
   };
 
   return (
@@ -59,7 +56,7 @@ function Dashboard() {
               </label>
               <input
                 type="text"
-                value={name}
+                value={medicineName}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
@@ -79,17 +76,27 @@ function Dashboard() {
               </label>
               <input
                 type="text"
-                value={contactInfo}
+                value={userEmail}
                 onChange={(e) => setContactInfo(e.target.value)}
                 placeholder="Enter email or phone number"
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
             <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Select Date</label>
+              <input
+                type="date"
+                value={reminderDate}
+                onChange={(e) => setReminderDate(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+
+            <div className="mb-4">
               <label className="block text-gray-700 mb-2">Select Time</label>
               <input
                 type="time"
-                value={time}
+                value={reminderTime}
                 onChange={(e) => setTime(e.target.value)}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
