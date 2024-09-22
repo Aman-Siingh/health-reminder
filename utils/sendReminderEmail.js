@@ -10,12 +10,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendReminderEmail = (to, medicineName) => {
+const sendReminderEmail = (to, medicineName, dosage) => {
   const mailOptions = {
     from: "fai3001091@gmail.com",
     to: to,
     subject: "Medicine Reminder",
-    text: `This is a reminder to take your medicine: ${medicineName}`,
+    text: `This is a reminder to take your medicine: ${medicineName} and take dose ${dosage} `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

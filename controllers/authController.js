@@ -96,8 +96,8 @@ export const loginController = async (req, res) => {
 
 export const mailController = async (req, res) => {
   try {
-    const { medicineName, reminderTime, userEmail } = req.body;
-    if (!userEmail || !medicineName || !reminderTime) {
+    const { medicineName, dosage, reminderTime, userEmail } = req.body;
+    if (!userEmail || !medicineName || !reminderTime || !dosage) {
       return res.status(400).send({
         success: false,
         message: "Please provide all fields",
@@ -105,6 +105,7 @@ export const mailController = async (req, res) => {
     }
     const med = await new Medicine({
       medicineName,
+      dosage,
       reminderTime,
       userEmail,
     }).save();

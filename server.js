@@ -42,7 +42,11 @@ cron.schedule("* * * * *", async () => {
 
     // Send email reminders
     medicines.forEach(async (medicine) => {
-      await sendReminderEmail(medicine.userEmail, medicine.medicineName); // Send the reminder email
+      await sendReminderEmail(
+        medicine.userEmail,
+        medicine.medicineName,
+        medicine.dosage
+      ); // Send the reminder email
 
       // Mark the notification as sent to avoid resending
       medicine.notificationSent = true;
