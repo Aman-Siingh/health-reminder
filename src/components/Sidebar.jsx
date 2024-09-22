@@ -7,7 +7,7 @@ const Sidebar = () => {
       <ul className="text-black font-bold space-y-[100px] p-4">
         <li><Link to="/dashboard">Medications Schedule</Link></li>
         <li><Link to="/appointments">Your Appointments</Link></li>
-        <li><Link to="/level">Level</Link></li>
+        <li><Link to="/completion-level">Level</Link></li>
         <li><Link to="/gifts">Gifts Won</Link></li>
       </ul>
     </div>

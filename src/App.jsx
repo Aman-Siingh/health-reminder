@@ -5,6 +5,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Guide from './pages/Guide';
 import Dashboard from './pages/Dashboard';
+import CompletionLevel from './pages/CompletionLevel';
+
 
 
 import BookAppointment from './pages/BookAppointment';
@@ -28,6 +30,9 @@ function App() {
           <Route path="/book-appointment" element={<BookAppointment />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/completion-level" element={<CompletionLevel />} />
+
+          
         </Routes>
 
        
