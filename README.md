@@ -30,19 +30,25 @@ MediSOS is built using the MERN stack:
 
 ## Installation
 
+To set up the MediSOS project, follow these steps:
+
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/MediSOS.git
-
-
-
-cd MediSOS
-
-
-npm install
-
-
-npm run dev
-
-
-npm run both
+   git clone https://github.com/Aman-Siingh/health-reminder.git
+   ```
+2. Navigate into the project directory:
+   ```bash
+   cd health-reminder
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+5. Run both the server and client:
+   ```bash
+   npm run both
+   ```
